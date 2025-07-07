@@ -84,4 +84,33 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with('success', 'Product deleted successfully');
 
     }
+
+    public function trashedProducts(Request $request){
+        $query = Product::query()->onlyTrashed();
+        if(request()->has("search") && $request->search){
+            $query = $query
+            ->where("name", "like", "%".$request->search."%");
+        }
+
+        $products = $query->paginate(5);
+
+        return view('product.deleted', compact('products'));
+    }
+
+    public function destroyProduct($id){
+        $product = Product::onlyTrashed()->findOrFail($id);
+        if($product->image && Storage::exists($product->image)){
+            Storage::delete($product->image);
+        }
+        $product->forceDelete();
+        
+        return redirect()->route('product.index')->with('success','Product deleted successfully');
+    }
+
+    public function restoreProduct($id){
+        $product = Product::onlyTrashed()->findOrFail($id);
+        $product->restore();
+
+        return redirect()->route('product.index')->with('success', 'product restored successfully');
+    }
 }
