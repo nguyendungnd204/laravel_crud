@@ -9,8 +9,14 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function index(){
-        $products = Product::all();
+    public function index(Request $request){
+        //$products = Product::all();
+        $query = Product::query();
+        if(request()->has("search") && $request->search){
+            $query = $query->where("name", "like", "%".$request->search."%")->orWhere("description", 'like', '%'.$request->search.'%');
+        }
+
+        $products = $query->latest()->paginate(10);
         return view('product.product_list', compact('products'));
     }
 
