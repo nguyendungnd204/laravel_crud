@@ -21,7 +21,6 @@
                 </span>
             </p>
 
-            {{-- <a href="{{route('products.edit', $product)}}" class="btn btn-warning">Edit</a> --}}
             <a href="{{route('product.index')}}" class="btn btn-secondary">Back</a>
         </div>
     </div>

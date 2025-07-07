@@ -57,6 +57,14 @@
                                     <td>{{ $product->status }}</td>
                                     <td>{{ $product->description }}</td>
                                     <td><a href="{{ route('product.show', $product->id) }}" class="btn btn-success btn-sm">Show</a></td>
+                                    <td><a href="{{ route('product.edit', $product->id) }}" class="btn btn-primary btn-sm">Edit</a></td>
+                                    <td>
+                                        <form action="{{route('product.destroy', $product->id)}}" method="post" style="display:inline-block">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure')">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         @else
