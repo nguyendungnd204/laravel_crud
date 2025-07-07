@@ -24,6 +24,14 @@
                 </div>
 
             </div>
+            
+                @if (Session::has('success'))
+                    <span class="text-center alert alert-success p-2 w-full">{{Session::get('success')}}</span>
+                @endif
+                @if (Session::has('error'))
+                    <span>{{Session::get('error')}}</span>
+                @endif
+            
             <div class="card-body">
                 <table class="table table-striped">
                     <thead>
@@ -48,6 +56,7 @@
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->status }}</td>
                                     <td>{{ $product->description }}</td>
+                                    <td><a href="{{ route('product.show', $product->id) }}" class="btn btn-success btn-sm">Show</a></td>
                                 </tr>
                             @endforeach
                         @else

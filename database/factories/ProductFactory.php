@@ -22,7 +22,7 @@ class ProductFactory extends Factory
             'quantity' => fake()->numberBetween(1, 100),
             'price' => fake()->randomFloat(2, 10, 1000),
             'image' => fake()->imageUrl() || null, // hoặc null nếu chưa dùng ảnh
-            'status' => fake()->randomElement(['active', 'in-active']),
+            'status' => fake()->randomElement(['active', 'inactive']),
             // 'category_id' sẽ được gán từ bên ngoài
         ];
     }
