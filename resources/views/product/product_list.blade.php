@@ -3,7 +3,26 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <h2>Product List</h2>
+                <div class="row">
+                    <div class="col">
+                        <h2>Product List</h2>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form class="d-flex">
+                                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="/create-product" class="float-end btn btn-success">Add New</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
             <div class="card-body">
                 <table class="table table-striped">
@@ -22,19 +41,19 @@
                         @if (count($products) > 0)
                             @foreach ($products as $product)
                                 <tr>
-                                    <th scope="row">{{$product->id}}</th>
-                                    <td>{{$product->name}}</td>
-                                    <td>{{$product->category->name}}</td>
-                                    <td>{{$product->quantity}}</td>
-                                    <td>{{$product->price}}</td>
-                                    <td>{{$product->status}}</td>
-                                    <td>{{$product->description}}</td>
+                                    <th scope="row">{{ $product->id }}</th>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->category->name }}</td>
+                                    <td>{{ $product->quantity }}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->status }}</td>
+                                    <td>{{ $product->description }}</td>
                                 </tr>
                             @endforeach
                         @else
-                                <tr>
-                                    <td colspan="7" class="text-center">No Product Found!</td>
-                                </tr>
+                            <tr>
+                                <td colspan="7" class="text-center">No Product Found!</td>
+                            </tr>
                         @endif
 
 
